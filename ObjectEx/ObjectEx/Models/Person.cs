@@ -6,6 +6,12 @@ public class Person
 
     public int Age { get; set; }
 
+    public Person(string name, int age) 
+    {
+        Name = name;
+        Age = age;
+    }
+
     public override string ToString()
     {
         return $"Name: {Name}, Age: {Age}";
@@ -31,24 +37,55 @@ public class Person
         return false;
     }
 
+    public override int GetHashCode()
+    {
+        int nameNum = 0;
+        if (!(this.Name == null))
+        {
+            nameNum = Name.GetHashCode() ^ 2;
+        }
+
+        return nameNum * Age.GetHashCode() ^ 4;
+    }
+
     public static bool operator ==(Person a, Person b)
     {
-        if (a.Name == b.Name && a.Age == b.Age)
+        if ((a is null && b is not null) || (b is null && a is not null))
+        {
+            return false;
+        }
+
+        if (a is null && b is not null)
         {
             return true;
         }
-        
-        return false;
+
+        return a.Name == b.Name && a.Age == b.Age;
     }
 
     public static bool operator !=(Person a, Person b)
     {
-        if (a.Name != b.Name || a.Age != b.Age)
+        return !(a == b);
+    }
+
+    public static bool operator >(Person a, Person b)
+    {
+        if (a == b) 
         {
-            return true;
+            return false;
         }
 
-        return false;
+        if (a is null || b is null)
+        {
+            return false;
+        }
+
+        return a.Age > b.Age;
+    }
+
+    public static bool operator <(Person a, Person b)
+    {
+        return b > a;
     }
 
 }
