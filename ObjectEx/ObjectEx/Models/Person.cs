@@ -39,47 +39,53 @@ public class Person
 
     public override int GetHashCode()
     {
-        return (Name.GetHashCode() ^ 2) * (Age.GetHashCode() ^ 4);
+        int nameNum = 0;
+        if (!(this.Name == null))
+        {
+            nameNum = Name.GetHashCode() ^ 2;
+        }
+
+        return nameNum * Age.GetHashCode() ^ 4;
     }
 
     public static bool operator ==(Person a, Person b)
     {
-        if (a.Name == b.Name && a.Age == b.Age)
+        if ((a is null && b is not null) || (b is null && a is not null))
+        {
+            return false;
+        }
+
+        if (a is null && b is not null)
         {
             return true;
         }
-        
-        return false;
+
+        return a.Name == b.Name && a.Age == b.Age;
     }
 
     public static bool operator !=(Person a, Person b)
     {
-        if (a.Age > b.Age)
-        {
-            return true;
-        }
-
-        return false;
+        return !(a == b);
     }
 
     public static bool operator >(Person a, Person b)
     {
-        if (a.Age > b.Age)
+        if (a == b) 
         {
-            return true;
+            return false;
         }
 
-        return false;
+        if (a is null || b is null)
+        {
+            return false;
+        }
+
+        return a.Age > b.Age;
     }
 
     public static bool operator <(Person a, Person b)
     {
-        if (a.Age < b.Age)
-        {
-            return true;
-        }
-
-        return false;
+        return b > a;
     }
 
 }

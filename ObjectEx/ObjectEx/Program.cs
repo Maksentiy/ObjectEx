@@ -8,7 +8,7 @@ internal class Program
     {
         var persons = new Person[4]
         {
-            new Person("Max", 29),
+            new Person(null, 29),
             new Person("Kira", 27),
             new Person("Max", 32),
             new Person("Kira", 27),
@@ -37,18 +37,18 @@ internal class Program
         Console.WriteLine();
 
         Console.WriteLine("==");
-        Console.WriteLine($"Is {persons[0].ToString()} == {persons[1].ToString()}? {persons[0] == persons[1]}");
-        Console.WriteLine($"Is {persons[1].ToString()} == {persons[3].ToString()}? {persons[1] == persons[3]}");
+        Console.WriteLine($"Is [{persons[0].ToString()}] == [{persons[1].ToString()}]? {persons[0] == persons[1]}");
+        Console.WriteLine($"Is [{persons[1].ToString()}] == [{persons[3].ToString()}]? {persons[1] == persons[3]}");
 
         Console.WriteLine("!=");
-        Console.WriteLine($"Is {persons[0].ToString()} != {persons[1].ToString()}? {persons[0] != persons[1]}");
-        Console.WriteLine($"Is {persons[1].ToString()} != {persons[3].ToString()}? {persons[1] != persons[3]}");
+        Console.WriteLine($"Is [{persons[0].ToString()}] != [{persons[1].ToString()}]? {persons[0] != persons[1]}");
+        Console.WriteLine($"Is [{persons[1].ToString()}] != [{persons[3].ToString()}]? {persons[1] != persons[3]}");
 
         Console.WriteLine(">");
         Console.WriteLine($"Is [{persons[0].ToString()}] age > [{persons[1].ToString()}] age? {persons[0] > persons[1]}");
         Console.WriteLine($"Is [{persons[1].ToString()}] age > [{persons[2].ToString()}] age? {persons[1] > persons[2]}");
 
-        Console.WriteLine("!=");
+        Console.WriteLine("<");
         Console.WriteLine($"Is [{persons[0].ToString()}] age < [{persons[1].ToString()}] age? {persons[0] < persons[1]}");
         Console.WriteLine($"Is [{persons[1].ToString()}] age < [{persons[2].ToString()}] age? {persons[1] < persons[2]}");
     }
